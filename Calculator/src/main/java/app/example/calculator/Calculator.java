@@ -2,12 +2,18 @@ package app.example.calculator;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+<<<<<<< HEAD
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
+=======
+import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.VBox;
+>>>>>>> origin/main
 import javafx.stage.Stage;
 
 public class Calculator extends Application {
@@ -16,6 +22,7 @@ public class Calculator extends Application {
 
 
         TextArea displayNumber = new TextArea();
+<<<<<<< HEAD
         displayNumber.setPrefWidth(300);
         displayNumber.setPrefHeight(40);
         displayNumber.setPadding(new Insets(5,5,5,5));
@@ -130,13 +137,42 @@ public class Calculator extends Application {
         VBox root = new VBox(10, displayNumber, gridPane);
         //create scene
         Scene scene = new Scene(root, 320, 450);
+=======
+        displayNumber.setPrefWidth(350);
+        displayNumber.setPrefHeight(20);
+        displayNumber.setPadding(new Insets(5));
+        displayNumber.setEditable(false);
+
+
+        VBox vbox = new VBox();
+
+        //layout manager
+        VBox root = new VBox(10,displayNumber);
+
+        //create scene
+        Scene scene = new Scene(root,400,500);
+>>>>>>> origin/main
 
 
         //set scene
         stage.setScene(scene);
+<<<<<<< HEAD
         //set title
         stage.setTitle("Calculator App");
         //set show
         stage.show();
+=======
+
+        //set title
+        stage.setTitle("Calculator");
+
+        //set show
+        stage.show();
+
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+>>>>>>> origin/main
     }
 }
