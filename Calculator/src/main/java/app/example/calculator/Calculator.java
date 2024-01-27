@@ -77,38 +77,37 @@ public class Calculator extends Application {
         for (Button n: numButtons){
             n.setOnAction(actionEvent -> {
                 //getting the initial value and concatenating the current value of n and the setting it on displayNumber
-                //displayNumber.setText(displayNumber.getText().concat(n.getText()));
-                displayNumber.setText(n.getText());
+               displayNumber.setText(displayNumber.getText().concat(n.getText()));
+                //displayNumber.setText(n.getText());
 
             });
         }
-        /*for displaying operators in the textField
-        for (Button o: operatorButton){
-            o.setOnAction(actionEvent -> {
-                //getting the initial value and concatenating the current value of o and the setting it on displayNumber
-                displayNumber.getText().concat(o.getText());
-            });
-        }*/
+
         addition.setOnAction(actionEvent -> {
             num1 = Double.parseDouble(displayNumber.getText());
             operator="+";
+            displayNumber.setText("");
 
         });
         subtraction.setOnAction(actionEvent -> {
             num1 = Double.parseDouble(displayNumber.getText());
             operator="-";
+            displayNumber.setText("");
         });
         multiplication.setOnAction(actionEvent -> {
             num1 = Double.parseDouble(displayNumber.getText());
             operator="*";
+            displayNumber.setText("");
         });
         division.setOnAction(actionEvent -> {
             num1 = Double.parseDouble(displayNumber.getText());
             operator="/";
+            displayNumber.setText("");
         });
         percentage.setOnAction(actionEvent -> {
             num1 = Double.parseDouble(displayNumber.getText());
             operator="%";
+            //displayNumber.setText(""); it will so error value if its added
         });
         equalTo.setOnAction(actionEvent -> {
             num2 = Double.parseDouble(displayNumber.getText());
@@ -128,10 +127,15 @@ public class Calculator extends Application {
                 case"/":
                     result=num1/num2;
                     break;
+                case"%":
+                    result=num1/100;
             }
             num1=result;
             displayNumber.setText(String.valueOf(num1));
 
+        });
+        allClear.setOnAction(actionEvent -> {
+            displayNumber.clear();
         });
 
         //gridPane
@@ -143,7 +147,6 @@ public class Calculator extends Application {
         gridPane.add(percentage, 0, 0);
         gridPane.add(division, 1, 0);
         gridPane.add(delete, 2, 0);
-        gridPane.add(allClear, 3, 0);
 
         gridPane.add(button9, 0, 1);
         gridPane.add(button8, 1, 1);
@@ -160,8 +163,9 @@ public class Calculator extends Application {
         gridPane.add(button1, 2, 3);
         gridPane.add(addition, 3, 3);
 
-        gridPane.add(button0, 0, 4,2,1);
-        gridPane.add(decimal, 2, 4);
+        gridPane.add(button0, 0, 4,1,4);
+        gridPane.add(decimal, 1, 4);
+        gridPane.add(allClear, 2, 4);
         gridPane.add(equalTo, 3, 4);
 
         //layout manager
