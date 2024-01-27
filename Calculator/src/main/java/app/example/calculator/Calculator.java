@@ -2,112 +2,143 @@ package app.example.calculator;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
-<<<<<<< HEAD
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
-=======
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
->>>>>>> origin/main
 import javafx.stage.Stage;
 
 public class Calculator extends Application {
+    //text field to display text
+    TextArea displayNumber = new TextArea();
+    //button for numbers
+    Button button0 = new Button("0");
+    Button button1 = new Button("1");
+    Button button2 = new Button("2");
+    Button button3 = new Button("3");
+    Button button4 = new Button("4");
+    Button button5 = new Button("5");
+    Button button6 = new Button("6");
+    Button button7 = new Button("7");
+    Button button8 = new Button("8");
+    Button button9 = new Button("9");
+    Button decimal = new Button(".");
+
+    //Button for mathematics operation
+    Button addition = new Button("+");
+    Button subtraction = new Button("-");
+    Button multiplication = new Button("*");
+    Button division = new Button("/");
+    Button percentage = new Button("%");
+
+    //Extra button
+    Button equalTo = new Button("=");
+    Button delete = new Button("Del");
+    Button allClear = new Button("AC");
+
+    double num1 ,num2, result;
+    String operator;
     @Override
     public void start(Stage stage) throws Exception {
 
-
-        TextArea displayNumber = new TextArea();
-<<<<<<< HEAD
+        //editing text field
         displayNumber.setPrefWidth(300);
         displayNumber.setPrefHeight(40);
         displayNumber.setPadding(new Insets(5,5,5,5));
         displayNumber.setEditable(false);
 
-        //button for numbers
-        Button button0 = new Button("0");
-        Button button1 = new Button("1");
-        Button button2 = new Button("2");
-        Button button3 = new Button("3");
-        Button button4 = new Button("4");
-        Button button5 = new Button("5");
-        Button button6 = new Button("6");
-        Button button7 = new Button("7");
-        Button button8 = new Button("8");
-        Button button9 = new Button("9");
-
-        button0.setPrefSize(70,60);
-        button1.setPrefSize(70,60);
-        button2.setPrefSize(70,60);
-        button3.setPrefSize(70,60);
-        button4.setPrefSize(70,60);
-        button5.setPrefSize(70,60);
-        button6.setPrefSize(70,60);
-        button7.setPrefSize(70,60);
-        button8.setPrefSize(70,60);
-        button9.setPrefSize(70,60);
-
-        button0.fontProperty().set(Font.font(30));
-        button1.fontProperty().set(Font.font(30));
-        button2.fontProperty().set(Font.font(30));
-        button3.fontProperty().set(Font.font(30));
-        button4.fontProperty().set(Font.font(30));
-        button5.fontProperty().set(Font.font(30));
-        button6.fontProperty().set(Font.font(30));
-        button7.fontProperty().set(Font.font(30));
-        button8.fontProperty().set(Font.font(30));
-        button9.fontProperty().set(Font.font(30));
-
-
-        //Button for mathematics operation
-        Button addition = new Button("+");
-        Button subtraction = new Button("-");
-        Button multiplication = new Button("*");
-        Button division = new Button("/");
-        Button percentage = new Button("%");
-        Button equalTo = new Button("=");
-
-        //sizing
-        addition.setPrefSize(70,65);
-        subtraction.setPrefSize(70,65);
-        multiplication.setPrefSize(70,65);
-        division.setPrefSize(70,65);
-        percentage.setPrefSize(70,65);
-        equalTo.setPrefSize(70,65);
-
-        //Extra button
-        Button decimal = new Button(".");
-        Button delete = new Button("Del");
-        Button allClear = new Button("AC");
-
-        //customize size of buttons
-        decimal.setPrefSize(70,65);
+        // numbers button array
+        Button[] numButtons = new Button[]{button0,button1,button2,button3,button4,button5,button6,button7,button8,button9,decimal};
+        // setting the button sizes and font size for number buttons
+        for (Button s : numButtons) {
+            s.setPrefSize(70, 60);
+            s.fontProperty().set(Font.font(30));
+        }
+        //operator button array
+        Button[] operatorButton = new Button[]{addition,subtraction,multiplication,division,percentage};
+        //setting the  button size and font size of the operator button
+        for(Button b:operatorButton){
+            b.setPrefSize(70,65);
+            b.fontProperty().set(Font.font(25));
+        }
         delete.setPrefSize(70,65);
         allClear.setPrefSize(70,65);
-
-        //customize font size of the button words
-        addition.fontProperty().set(Font.font(25));
-        subtraction.fontProperty().set(Font.font(25));
-        multiplication.fontProperty().set(Font.font(25));
-        division.fontProperty().set(Font.font(25));
-        percentage.fontProperty().set(Font.font(25));
-        equalTo.fontProperty().set(Font.font(25));
-        decimal.fontProperty().set(Font.font(25));
+        equalTo.setPrefSize(70,65);
         delete.fontProperty().set(Font.font(25));
         allClear.fontProperty().set(Font.font(25));
+        equalTo.fontProperty().set(Font.font(25));
 
+        //for displaying numbers in the textField
+        for (Button n: numButtons){
+            n.setOnAction(actionEvent -> {
+                //getting the initial value and concatenating the current value of n and the setting it on displayNumber
+                //displayNumber.setText(displayNumber.getText().concat(n.getText()));
+                displayNumber.setText(n.getText());
 
+            });
+        }
+        /*for displaying operators in the textField
+        for (Button o: operatorButton){
+            o.setOnAction(actionEvent -> {
+                //getting the initial value and concatenating the current value of o and the setting it on displayNumber
+                displayNumber.getText().concat(o.getText());
+            });
+        }*/
+        addition.setOnAction(actionEvent -> {
+            num1 = Double.parseDouble(displayNumber.getText());
+            operator="+";
 
+        });
+        subtraction.setOnAction(actionEvent -> {
+            num1 = Double.parseDouble(displayNumber.getText());
+            operator="-";
+        });
+        multiplication.setOnAction(actionEvent -> {
+            num1 = Double.parseDouble(displayNumber.getText());
+            operator="*";
+        });
+        division.setOnAction(actionEvent -> {
+            num1 = Double.parseDouble(displayNumber.getText());
+            operator="/";
+        });
+        percentage.setOnAction(actionEvent -> {
+            num1 = Double.parseDouble(displayNumber.getText());
+            operator="%";
+        });
+        equalTo.setOnAction(actionEvent -> {
+            num2 = Double.parseDouble(displayNumber.getText());
+            /*if(addition.getText().equals("+")){
+                result=num1+num2;
+            }*/
+            switch (operator){
+                case "+":
+                    result=num1+num2;
+                    break;
+                case"-":
+                    result=num1-num2;
+                    break;
+                case"*":
+                    result=num1*num2;
+                    break;
+                case"/":
+                    result=num1/num2;
+                    break;
+            }
+            num1=result;
+            displayNumber.setText(String.valueOf(num1));
 
+        });
+
+        //gridPane
         GridPane gridPane = new GridPane();
         gridPane.setHgap(5);
         gridPane.setVgap(5);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
-
         //adding button in grid pane
         gridPane.add(percentage, 0, 0);
         gridPane.add(division, 1, 0);
@@ -136,43 +167,16 @@ public class Calculator extends Application {
         //layout manager
         VBox root = new VBox(10, displayNumber, gridPane);
         //create scene
-        Scene scene = new Scene(root, 320, 450);
-=======
-        displayNumber.setPrefWidth(350);
-        displayNumber.setPrefHeight(20);
-        displayNumber.setPadding(new Insets(5));
-        displayNumber.setEditable(false);
-
-
-        VBox vbox = new VBox();
-
-        //layout manager
-        VBox root = new VBox(10,displayNumber);
-
-        //create scene
-        Scene scene = new Scene(root,400,500);
->>>>>>> origin/main
-
-
+        Scene scene = new Scene(root,320,450);
         //set scene
         stage.setScene(scene);
-<<<<<<< HEAD
         //set title
         stage.setTitle("Calculator App");
-        //set show
-        stage.show();
-=======
-
-        //set title
-        stage.setTitle("Calculator");
-
+        stage.setResizable(false);
         //set show
         stage.show();
 
     }
 
-    public static void main(String[] args) {
-        launch(args);
->>>>>>> origin/main
-    }
+
 }
